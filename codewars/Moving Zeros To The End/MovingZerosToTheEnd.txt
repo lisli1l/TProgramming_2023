@@ -1,0 +1,18 @@
+#include <vector>
+
+std::vector<int> move_zeroes(const std::vector<int>& input) {
+  std::vector<int> arr(input.size());
+  
+  int lastIndex{};
+  
+  for (int num: input)
+  {
+     if (num != 0)
+     {
+       arr[lastIndex] = num;
+       ++lastIndex;
+     }
+  }
+  
+  return arr;
+}

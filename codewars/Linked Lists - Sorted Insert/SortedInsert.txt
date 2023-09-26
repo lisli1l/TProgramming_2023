@@ -1,0 +1,17 @@
+class Node(object):
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+def sorted_insert(head, data):
+    if head is None:
+        return Node(data)
+    
+    elem=Node(data)
+    if elem.data < head.data:
+        elem.next=head
+        return elem
+    else:
+        head.next=sorted_insert(head.next,data)
+        return head

@@ -1,0 +1,15 @@
+#include <vector>
+
+char findMissingLetter(const std::vector<char>& chars)
+{
+  // TODO: Find the missing char in the consecutive letter sequence and return it.
+  
+  char lastChar{ chars[0] };
+  for (char c: chars)
+    {
+       if (c - lastChar > 1)
+         return ++lastChar;
+    
+       lastChar = c;
+    }
+}

@@ -1,0 +1,9 @@
+import sys
+
+def sum_pairs(ints, s):
+    values = set()
+    for elem in ints:
+        if elem in values:
+            return [s-elem, elem]
+        values.add(s-elem)
+            

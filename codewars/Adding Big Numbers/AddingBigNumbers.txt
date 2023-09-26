@@ -1,0 +1,54 @@
+#include <algorithm>
+#include <iostream>
+#include <string>
+ 
+int ssize(const std::string& s)
+{
+  return static_cast<int>(s.size());
+}
+ 
+std::string sum(const std::string& a, const std::string& b)
+{
+  std::string result;
+  
+  int offset{ssize(a) - ssize(b)};
+  int rememberedDigit{0};
+  char sum{};
+  
+  for (int i{ ssize(a)-1 }; i >= 0; --i)
+  {
+    if (i - offset >= 0)
+        sum = a[i] + b[i-offset] - 48*2;
+    else
+        sum = a[i] - 48;
+        
+    if (rememberedDigit > 0)
+      sum += rememberedDigit;
+    
+    if (sum > 9)
+    {
+      rememberedDigit = sum / 10;
+      sum %= 10;
+    }
+    else
+    {
+     rememberedDigit = 0; 
+    }
+    
+    result += sum+48;
+  }
+  
+  if (rememberedDigit > 0)
+    result += rememberedDigit+48;
+  
+  std::reverse(result.begin(), result.end());
+  
+  return result;
+}
+ 
+std::string add(const std::string& a, const std::string& b) {
+  if (a.size() > b.size())
+    return sum(a, b);
+  else
+    return sum(b, a);
+}

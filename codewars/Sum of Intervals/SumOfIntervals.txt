@@ -1,0 +1,15 @@
+def sort_first(val):
+    return val[0]
+
+def sum_of_intervals(intervals):
+    intervals.sort(key=sort_first)
+    
+    sum = 0
+    
+    for i in range(len(intervals)-1):
+        if intervals[i][1] >= intervals[i+1][0]:
+            intervals[i+1] = (intervals[i][0], max(intervals[i+1][1], intervals[i][1]))
+        else:
+            sum += intervals[i][1] - intervals[i][0]
+    sum += intervals[len(intervals)-1][1] - intervals[len(intervals)-1][0]
+    return sum

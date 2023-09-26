@@ -1,0 +1,29 @@
+#include <string>
+
+char to_upper(char c)
+{
+   if (c >= 'a' && c <= 'z')
+     c -= 32;
+  
+   return c;
+}
+
+std::string to_camel_case(std::string text) {
+  
+  std::string result{};
+  
+  for (size_t i{0}; i < text.size(); i++)
+  {
+     switch (text[i])
+     {
+       case '_':
+       case '-':
+         result += to_upper(text[++i]);
+         break;
+       default:
+         result += text[i];
+     }
+  }
+  
+  return result;
+}

@@ -1,0 +1,20 @@
+def fibNumCalculate(fibNum, n):
+    if n < 2:
+        return fibNum[n-1]
+    if len(fibNum)-1 >= n:
+        return fibNum[n-1]
+    fibNum.append(fibNum[-1]+fibNum[-2])
+    return fibNum[-1]
+
+def productFib(prod):
+    fibNum = [0, 1]
+    
+    n = 2
+    
+    while fibNum[-1] * fibNum[-2] <= prod:
+        if fibNum[-1] * fibNum[-2] == prod:
+            return [fibNum[-2], fibNum[-1], True]
+        fibNumCalculate(fibNum, n)
+        n += 1
+    
+    return [fibNum[-2], fibNum[-1], False]

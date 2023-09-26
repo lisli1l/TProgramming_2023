@@ -1,0 +1,11 @@
+def anagrams(word, words):
+    ans = []
+    
+    word = sorted(word)
+    
+    for w in words:
+        if len(w) == len(word):
+            if word == sorted(w):
+                ans.append(w)
+
+    return ans
