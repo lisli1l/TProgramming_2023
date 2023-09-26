@@ -1,0 +1,41 @@
+#include <string>
+#include <vector>
+
+constexpr unsigned int arithmeticProgressionDiff{ 2 };
+
+unsigned int arithmeticProgression(unsigned int startValue, unsigned int memberNumber)
+{
+  return startValue + (memberNumber - 1) * arithmeticProgressionDiff;
+}
+
+std::string generateFloor(const unsigned int lengthOfEachLine,
+                                     unsigned int firstSymbolPosition, unsigned int amountOfSymbols)
+{
+  std::string floor(lengthOfEachLine,' ');
+  
+  for (size_t i{ firstSymbolPosition }; amountOfSymbols > 0; ++i, --amountOfSymbols)
+  {
+     floor[i] = '*';
+  }
+  
+  return floor;
+}
+
+std::vector<std::string> towerBuilder(unsigned nFloors)
+{
+  const unsigned int symbolsOnLastFloor{ arithmeticProgression(1, nFloors) };
+  unsigned int firstSymbolPosition{ symbolsOnLastFloor / 2 };
+  
+  std::vector<std::string> tower(nFloors);
+  
+  for (size_t i{0}; i < nFloors; ++i)
+  {
+    std::string floor{ generateFloor(symbolsOnLastFloor, firstSymbolPosition, arithmeticProgression(1, i+1)) };
+    
+    --firstSymbolPosition;
+    
+    tower[i] = floor;
+  }
+  
+  return tower;
+}

@@ -1,0 +1,44 @@
+#include <vector>
+
+std::vector<int> snail(const std::vector<std::vector<int>> &snail_map) {
+  const int border{static_cast<int>(snail_map[0].size())};
+  
+  int leftBorder{0}, upBorder{0};
+  int rightBorder{border-1}, downBorder{border-1};
+  
+  std::vector<int> ans;
+  
+  int times{(border + 2)/2};
+  while (times > 0) {
+  for (int j{leftBorder}, i{upBorder}; j <= rightBorder; ++j)
+  {
+    ans.push_back(snail_map[i][j]);
+  }
+ 
+  ++upBorder;
+  
+  for (int i{upBorder}, j{rightBorder}; i <= downBorder; ++i)
+  {
+    ans.push_back(snail_map[i][j]);
+  }
+  
+  --rightBorder;
+  
+  for (int j{rightBorder}, i{downBorder}; j >= leftBorder; --j)
+  {
+    ans.push_back(snail_map[i][j]);
+  }
+ 
+  --downBorder;
+  
+  for (int i{downBorder}, j{leftBorder}; i >= upBorder; --i)
+  {
+    ans.push_back(snail_map[i][j]);
+  }
+
+  ++leftBorder;
+  
+  --times;
+  }
+  return ans;
+}

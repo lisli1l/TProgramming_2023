@@ -1,0 +1,28 @@
+def countLettersInWord(setOfLetters, word):
+    lettersCount = {}
+    
+    for letter in word:
+        if letter not in lettersCount.keys():
+            lettersCount[letter] = 1
+            setOfLetters.add(letter)
+        else:
+            lettersCount[letter] += 1
+    
+    return lettersCount
+
+
+def anagram_difference(w1, w2):
+    setOfLetters = set()
+    
+    lettersCountW1 = countLettersInWord(setOfLetters, w1)
+    lettersCountW2 = countLettersInWord(setOfLetters, w2)
+    
+    lettersToRemove = 0
+    
+    for elem in setOfLetters:
+        if (elem in lettersCountW1) and (elem in lettersCountW2):
+            lettersToRemove += abs(lettersCountW1[elem] - lettersCountW2[elem])
+        else:
+            lettersToRemove += lettersCountW1[elem] if elem in lettersCountW1 else lettersCountW2[elem]
+    
+    return lettersToRemove

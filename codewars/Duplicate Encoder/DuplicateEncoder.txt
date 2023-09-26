@@ -1,0 +1,32 @@
+#include <map>
+#include <string>
+#include <string_view>
+
+char to_lower(char c)
+{
+   if (c >= 'A' && c <= 'Z')
+     c += 32;
+   
+   return c;
+}
+
+std::string duplicate_encoder(const std::string& word){
+   std::map<char, int> letterCount{};
+   
+   for (char c: word)
+      ++letterCount[to_lower(c)];
+   
+   std::string output{};
+  
+   for (char c: word)
+   {
+     int count{letterCount[to_lower(c)]};
+     
+     if (count > 1)
+       output += ")";
+     else
+       output += "(";
+   }
+   
+   return output;
+}

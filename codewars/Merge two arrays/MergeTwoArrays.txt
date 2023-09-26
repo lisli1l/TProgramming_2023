@@ -1,0 +1,14 @@
+function mergeArrays(a, b) {
+  let answer = [];
+  
+  for (let i = 0; a[i] || b[i]; i++) {
+    if (a[i] != null) {
+      answer.push(a[i]);
+    }
+    if (b[i] != null) {
+      answer.push(b[i]);
+    }
+  }
+  
+  return answer;
+}

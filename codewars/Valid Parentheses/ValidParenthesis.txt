@@ -1,0 +1,13 @@
+def valid_parentheses(string):
+    stack = []
+    
+    for elem in string:
+        if elem == ')':
+            if len(stack) > 0 and stack[-1] == '(':
+                stack.pop()
+            else:
+                stack.append(elem)
+        elif elem == '(':
+            stack.append(elem)
+            
+    return len(stack) == 0
